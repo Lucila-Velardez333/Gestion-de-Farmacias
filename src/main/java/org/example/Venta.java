@@ -1,0 +1,108 @@
+package org.example;
+
+import java.time.LocalDate;
+
+public class Venta {
+    private int numTicket;
+    private LocalDate fecha;
+    private float totalVenta;
+    private int puntoDeVenta;
+    private FormaDePago formaDePago;
+    private Persona cliente;
+    private Empleado empleadoAtencion;
+    private Empleado empleadoCobro;
+    private DetalleProducto detalleProducto;
+
+    public Venta(int numTicket) {
+        this.numTicket = numTicket;
+    }
+
+    public Venta(LocalDate fecha, int numTicket, float totalVenta, int puntoDeVenta, FormaDePago formaDePago, Persona cliente, Empleado empleadoAtencion, Empleado empleadoCobro, DetalleProducto detalleProducto) {
+        this.fecha = fecha;
+        this.numTicket = numTicket;// debe ser autoincremental?
+        this.totalVenta = totalVenta;
+        this.puntoDeVenta = puntoDeVenta;
+        this.formaDePago = formaDePago;
+        this.cliente = cliente;
+        this.empleadoAtencion = empleadoAtencion;
+        //recorrer lista roles para asignar cual es el de atencion o cajero
+        this.empleadoCobro = empleadoCobro;
+        this.detalleProducto = detalleProducto;
+    }
+
+    public int getNumTicket() {
+        return numTicket;
+    }
+
+    public void setNumTicket(int numTicket) {
+        this.numTicket = numTicket;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public float getTotalVenta() {
+        return totalVenta;
+    }
+
+    public void setTotalVenta(float totalVenta) {
+        this.totalVenta = totalVenta;
+    }
+
+    public int getPuntoDeVenta() {
+        return puntoDeVenta;
+    }
+
+    public void setPuntoDeVenta(int puntoDeVenta) {
+        this.puntoDeVenta = puntoDeVenta;
+    }
+
+    public FormaDePago getFormaDePago() {
+        return formaDePago;
+    }
+
+    public void setFormaDePago(FormaDePago formaDePago) {
+        this.formaDePago = formaDePago;
+    }
+
+    public Persona getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Persona cliente) {
+        this.cliente = cliente;
+    }
+
+    public Empleado getEmpleadoAtencion() {
+        return empleadoAtencion;
+    }
+
+    public void setEmpleadoAtencion(Empleado empleadoAtencion) {
+        //recorrer lista roles para asignar cual es el de atencion o cajero
+
+        this.empleadoAtencion = empleadoAtencion;
+    }
+
+    public Empleado getEmpleadoCobro() {
+        return empleadoCobro;
+    }
+
+    public void setEmpleadoCobro(Empleado empleadoCobro) {
+        //recorrer lista roles para asignar cual es el de atencion o cajero
+
+        this.empleadoCobro = empleadoCobro;
+    }
+
+    public DetalleProducto getDetalleProducto() {
+        return detalleProducto;
+    }
+
+    public void setDetalleProducto(DetalleProducto detalleProducto) {
+        this.detalleProducto = detalleProducto;
+    }
+}
