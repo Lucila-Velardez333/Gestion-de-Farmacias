@@ -12,10 +12,10 @@ public class ObraSocial {
         this.idObraSocial = idObraSocial;
     }
 
-    public ObraSocial(String nombre, int idObraSocial, int numAfiliado) {
+    public ObraSocial(String nombre, int idObraSocial) {
         this.nombre = nombre;
         this.idObraSocial = idObraSocial;//auto incremental
-        this.numAfiliado = numAfiliado;
+
     }
 
     public String getNombre() {
@@ -34,20 +34,12 @@ public class ObraSocial {
         this.idObraSocial = idObraSocial;
     }
 
-    public int getNumAfiliado() {
-        return numAfiliado;
-    }
-
-    public void setNumAfiliado(int numAfiliado) {
-        this.numAfiliado = numAfiliado;
-    }
 
     @Override
     public String toString() {
         return "ObraSocial{" +
                 "idObraSocial=" + idObraSocial +
                 ", nombre='" + nombre + '\'' +
-                ", numAfiliado=" + numAfiliado +
                 '}';
     }
 }
