@@ -3,14 +3,13 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Empleado {
+public class Empleado extends Persona{
     private int cuil;
-    private Persona empleado;
     private Sucursal sucursal;
     private List<TipoEmpleado> roles = new ArrayList<TipoEmpleado>();
 
-    public Empleado(Persona empleado, int cuil, Sucursal sucursal, List<TipoEmpleado> roles) {
-        this.empleado = empleado;
+    public Empleado(String nombre,String apellido,int dni,int numAfiliado, ObraSocial obraSocial, Domicilio domicilio, int cuil, Sucursal sucursal, List<TipoEmpleado> roles) {
+        super(nombre,apellido,dni,numAfiliado,obraSocial,domicilio);
         this.cuil = cuil;
         this.sucursal = sucursal;
         this.roles = new ArrayList<>();
@@ -18,14 +17,6 @@ public class Empleado {
 
     public int getCuil() {
         return cuil;
-    }
-
-    public Persona getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(Persona empleado) {
-        this.empleado = empleado;
     }
 
     public Sucursal getSucursal() {

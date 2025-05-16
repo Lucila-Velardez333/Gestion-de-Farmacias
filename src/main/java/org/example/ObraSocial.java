@@ -3,7 +3,7 @@ package org.example;
 public class ObraSocial {
     private int idObraSocial;
     private String nombre;
-    private int numAfiliado;
+
 
     public ObraSocial() {
     }

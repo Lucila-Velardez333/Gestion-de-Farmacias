@@ -25,6 +25,7 @@ public class Sucursal {
     }
 
     public int getIdSucursal() {
+
         return idSucursal;
     }
 

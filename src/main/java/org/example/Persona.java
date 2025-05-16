@@ -7,14 +7,16 @@ public class Persona {
     private int dni;
     private ObraSocial obraSocial;
     private Domicilio domicilio;
+    private int numAfiliado;
 
     public Persona(int idPersona) {
         this.idPersona = idPersona;
     }
 
-    public Persona(String nombre, int idPersona, String apellido, int dni, ObraSocial obraSocial, Domicilio domicilio) {
+    public Persona(String nombre, String apellido, int dni, int numAfiliado, ObraSocial obraSocial, Domicilio domicilio) {
         this.nombre = nombre;
-        this.idPersona = idPersona;//auto incremental
+//        this.idPersona = idPersona;//auto incremental
+        this.numAfiliado=numAfiliado;
         this.apellido = apellido;
         this.dni = dni;
         this.obraSocial = obraSocial;
