@@ -1,17 +1,15 @@
 package org.example;
 
 import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 
 public class Sucursal {
     private int idSucursal;
     private Domicilio domicilio;
     private Empleado encargado;
+    @JsonManagedReference
     private List<Empleado> empleados;
-    //private List<Venta> ventas= new ArrayList<>(); //VER
-    //chequear si dejar la variable de ventas para saber cuantas ventas tiene
-    //si lo dejamos debemos combrobar en ventas si coinciden los empleados cobrador y vendedor
-    // si coinciden se agrega a la lista
 
     public Sucursal(int idSucursal) {
         this.idSucursal = idSucursal;

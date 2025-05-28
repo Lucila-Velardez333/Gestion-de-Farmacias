@@ -1,21 +1,23 @@
 package org.example;
 
 import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.List;
 
 public class Empleado extends Persona{
-    private int cuil;
+    private String cuil;
+    @JsonBackReference
     private Sucursal sucursal;
     private List<TipoEmpleado> roles = new ArrayList<TipoEmpleado>();
 
-    public Empleado(String nombre,String apellido,int dni,int numAfiliado, ObraSocial obraSocial, Domicilio domicilio, int cuil, Sucursal sucursal, List<TipoEmpleado> roles) {
+    public Empleado(String nombre,String apellido,int dni,int numAfiliado, ObraSocial obraSocial, Domicilio domicilio, String cuil, Sucursal sucursal, List<TipoEmpleado> roles) {
         super(nombre,apellido,dni,numAfiliado,obraSocial,domicilio);
         this.cuil = cuil;
         this.sucursal = sucursal;
         this.roles = new ArrayList<>();
     }
 
-    public int getCuil() {
+    public String getCuil() {
         return cuil;
     }
 
