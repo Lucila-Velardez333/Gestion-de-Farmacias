@@ -19,6 +19,21 @@
             <artifactId>mongodb-driver-sync</artifactId>
             <version>4.10.2</version> <!-- Usá la última estable -->
         </dependency>
+        <dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-simple</artifactId>
+		    <version>2.0.12</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.15.2</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.fasterxml.jackson.datatype</groupId>
+		  <artifactId>jackson-datatype-jsr310</artifactId>
+		  <version>2.15.2</version> <!-- o la versión que uses -->
+		</dependency>
     </dependencies>
 
 </project>
