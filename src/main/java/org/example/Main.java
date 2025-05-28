@@ -9,6 +9,8 @@ import com.mongodb.client.result.InsertManyResult;
 import org.bson.types.ObjectId;
 
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -22,17 +24,25 @@ public class Main {
             MongoDatabase database = mongoClient.getDatabase("gestion_farmacia");
 
             MongoCollection<Document> collection = database.getCollection("Personas");
+            MongoCollection<Document> collectionVenta = database.getCollection("Venta");
 
-            InsertOneResult result = collection.insertOne(new Document()
-                    .append("_id", new ObjectId())
-                    .append("nombre", "Lucila"));
-            InsertOneResult result1 = collection.insertOne(new Document()
-                    .append("_id", new ObjectId())
-                    .append("nombre", "Dylan"));
-            System.out.println(collection);
+            Document primerDocumentoVenta= new Document("id", new ObjectId())
+                    .append("numTicket",1)
+                    .append("fecha",new GregorianCalendar(2025, Calendar.MARCH,20).getTime())
+                    ;
 
-            System.out.println("Inserted document id - insert one: " + result.getInsertedId());
-            System.out.println("Inserted document id - insert two: " + result1.getInsertedId());
+            InsertOneResult primeraVenta = collectionVenta.insertOne(new Document());
+
+//            InsertOneResult result = collection.insertOne(new Document()
+//                    .append("_id", new ObjectId())
+//                    .append("nombre", "Lucila"));
+//            InsertOneResult result1 = collection.insertOne(new Document()
+//                    .append("_id", new ObjectId())
+//                    .append("nombre", "Dylan"));
+//            System.out.println(collection);
+
+//            System.out.println("Inserted document id - insert one: " + result.getInsertedId());
+//            System.out.println("Inserted document id - insert two: " + result1.getInsertedId());
             System.out.println("****************************");
             System.out.println(" Mostramos todas las personas registradas:");
             for (Document persona : collection.find()) {

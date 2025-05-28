@@ -27,12 +27,10 @@ public class ObraSocial {
     }
 
     public int getIdObraSocial() {
+        
         return idObraSocial;
     }
 
-    public void setIdObraSocial(int idObraSocial) {
-        this.idObraSocial = idObraSocial;
-    }
 
 
     @Override
