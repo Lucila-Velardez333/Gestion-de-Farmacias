@@ -103,6 +103,7 @@ public class Main {
 
 
 
+            //para insertar en mongodb
             String uri = "mongodb://localhost:27017";
             try (MongoClient mongoClient = MongoClients.create(uri)) {
                 MongoDatabase database = mongoClient.getDatabase("gestion_farmacia");

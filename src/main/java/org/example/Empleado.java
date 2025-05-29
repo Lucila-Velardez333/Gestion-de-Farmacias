@@ -14,7 +14,7 @@ public class Empleado extends Persona{
         super(nombre,apellido,dni,numAfiliado,obraSocial,domicilio);
         this.cuil = cuil;
         this.sucursal = sucursal;
-        this.roles = new ArrayList<>();
+        this.roles = roles;
     }
 
     public String getCuil() {

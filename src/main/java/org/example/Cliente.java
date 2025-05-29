@@ -5,7 +5,7 @@ public class Cliente extends Persona{
 
     public Cliente(String nombre,String apellido,int dni,int numAfiliado, ObraSocial obraSocial, Domicilio domicilio) {
         super(nombre,apellido,dni,numAfiliado,obraSocial,domicilio);
-        this.idCliente = idCliente;
+        this.idCliente = getIdPersona();
 
     }
 

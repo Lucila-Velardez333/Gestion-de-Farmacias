@@ -1,26 +1,36 @@
 package org.example;
 
 public class Persona {
+	private static int contador = 1;
+	
     private int idPersona;
     private String nombre;
     private String apellido;
     private int dni;
+    private int numAfiliado;
     private ObraSocial obraSocial;
     private Domicilio domicilio;
-    private int numAfiliado;
 
     public Persona(int idPersona) {
         this.idPersona = idPersona;
     }
 
     public Persona(String nombre, String apellido, int dni, int numAfiliado, ObraSocial obraSocial, Domicilio domicilio) {
-        this.nombre = nombre;
-//        this.idPersona = idPersona;//auto incremental
+    	this.idPersona = contador++;
+    	this.nombre = nombre;
         this.numAfiliado=numAfiliado;
         this.apellido = apellido;
         this.dni = dni;
         this.obraSocial = obraSocial;
         this.domicilio = domicilio;
+    }
+    
+    public int getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(int idPersona) {
+        this.idPersona = idPersona;
     }
 
     public String getNombre() {
@@ -29,14 +39,6 @@ public class Persona {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public int getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(int idPersona) {
-        this.idPersona = idPersona;
     }
 
     public String getApellido() {
@@ -54,18 +56,27 @@ public class Persona {
     public void setDni(int dni) {
         this.dni = dni;
     }
+    
+    public int getNumAfiliado() {
+        return numAfiliado;
+    }
 
-    public ObraSocial getNumAfiliado() {
+    public void setNumAfiliado(int numAfiliado) {
+        this.numAfiliado = numAfiliado;
+    }
+    
+    public ObraSocial getObraSocial() {
         return obraSocial;
     }
 
-    public void setNumAfiliado(ObraSocial obraSocial) {
+    public void setObraSocial(ObraSocial obraSocial) {
         this.obraSocial = obraSocial;
-    }
+    } 
 
     public Domicilio getDomicilio() {
         return domicilio;
     }
+    
 
     public void setDomicilio(Domicilio domicilio) {
         this.domicilio = domicilio;
