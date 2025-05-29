@@ -101,6 +101,23 @@ public class Main {
             System.out.println("Venta JSON:");
             System.out.println(jsonVenta);
 
+
+
+            String uri = "mongodb://localhost:27017";
+            try (MongoClient mongoClient = MongoClients.create(uri)) {
+                MongoDatabase database = mongoClient.getDatabase("gestion_farmacia");
+
+                MongoCollection<Document> coleccionVenta = database.getCollection("Venta");
+
+                Document documentVenta = Document.parse(jsonVenta);
+
+                 coleccionVenta.insertOne(documentVenta);
+                System.out.println("✅ Documento insertado correctamente en MongoDB.");
+
+            }catch (Exception e) {
+                System.err.println("Error de conexión: " + e.getMessage());
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -109,47 +126,85 @@ public class Main {
 
 
 
-        String uri = "mongodb://localhost:27017";
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("gestion_farmacia");
+// ************************************************************************************************
 
-            MongoCollection<Document> collection = database.getCollection("Personas");
+//        //DOMICILIOS
+//
+//        Domicilio domicilio1= new Domicilio("San Martín ",1,"San Fernando","Buenos aires");
+//        Domicilio domicilio2= new Domicilio("Avenida Mitre ",1,"Avellaneda","Buenos aires");
+//        Domicilio domicilio3= new Domicilio("Calle Rivadavia  ",1,"Morón","Buenos aires");
+//        Domicilio domicilio4= new Domicilio("Calle 12 ",1,"La Plata","Buenos aires");
+//
+//        //OBRA SOCIAL
+//        ObraSocial obraSocial1= new ObraSocial("IOMA",1);
+//        ObraSocial obraSocial2= new ObraSocial("GALENO",2);
+//
+//        //Sucursal
+//        Sucursal sucursal1= new Sucursal(null, domicilio2,1);
+//
+//
+//
+//        //Empleado
+//        List<Empleado> empleados= new ArrayList<>();
+//        empleados.add(new Empleado("Lucila","Velardez",12345678,1,obraSocial1,domicilio1,"123456789101",sucursal1, new ArrayList<TipoEmpleado>())  );
+//
+//        try {
+//            empleados.get(0).getRoles().add(TipoEmpleado.VENDEDOR);
+//        } catch (IndexOutOfBoundsException e) {
+//            System.out.println("Error: La lista de empleados no tiene tipo empleado.");
+//        }
 
-            InsertOneResult result = collection.insertOne(new Document()
-                    .append("_id", new ObjectId())
-                    .append("nombre", "Lucila"));
-            InsertOneResult result1 = collection.insertOne(new Document()
-                    .append("_id", new ObjectId())
-                    .append("nombre", "Dylan"));
-            System.out.println(collection);
+            // /////////////////////////////////////////////////////////////////////////////
+//
+//            Document empleado1= new Document("id",new ObjectId())
+//                    .append("cuil","12345678123")
+//                    .append("nombre","Veronica")
+//                    .append("apellido","Perez")
+//                    .append("dni","12345678")
+//                    .append("numAfiliado",1)
+//                    .append("domicilio",new Document("id",new ObjectId())
+//                            .append("calle","Rivadavia")
+//                            .append("numCalle",123)
+//                            .append("localidad","chacarita")
+//                            .append("provincia","buenos aires")
+//                    )
+//                    .append("obra social",new Document("id",new ObjectId())
+//                            .append("nombre","IOMA")
+//                    );
+//
 
-            System.out.println("Inserted document id - insert one: " + result.getInsertedId());
-            System.out.println("Inserted document id - insert two: " + result1.getInsertedId());
-            System.out.println("****************************");
-            System.out.println(" Mostramos todas las personas registradas:");
-            for (Document persona : collection.find()) {
-                System.out.println(persona.toJson());
-            }
+//            MongoCollection<Document> collection = database.getCollection("Personas");
+//
+//            InsertOneResult result = collection.insertOne(new Document()
+//                    .append("_id", new ObjectId())
+//                    .append("nombre", "Lucila"));
+//            InsertOneResult result1 = collection.insertOne(new Document()
+//                    .append("_id", new ObjectId())
+//                    .append("nombre", "Dylan"));
+//            System.out.println(collection);
 
-            System.out.println(" Buscamos un documento en la coleccion Personas");
-            Document doc = collection.find(eq("nombre", "Dylan")).first();
-            if (doc != null) {
-                System.out.println(doc.toJson());
-            } else {
-                System.out.println("No se.");
-            }
+//            System.out.println("Inserted document id - insert one: " + result.getInsertedId());
+//            System.out.println("Inserted document id - insert two: " + result1.getInsertedId());
+//            System.out.println("****************************");
+//            System.out.println(" Mostramos todas las personas registradas:");
+//            for (Document persona : collection.find()) {
+//                System.out.println(persona.toJson());
+//            }
+//
+//            System.out.println(" Buscamos un documento en la coleccion Personas");
+//            Document doc = collection.find(eq("nombre", "Dylan")).first();
+//            if (doc != null) {
+//                System.out.println(doc.toJson());
+//            } else {
+//                System.out.println("No se.");
+//            }
+//            System.out.println("Bases de datos disponibles:");
+//            for (String name : mongoClient.listDatabaseNames()) {
+//                System.out.println("- " + name);
+//            }
+//
+//            System.out.println("Conectado a: " + database.getName());
 
-
-
-            System.out.println("Bases de datos disponibles:");
-            for (String name : mongoClient.listDatabaseNames()) {
-                System.out.println("- " + name);
-            }
-
-            System.out.println("Conectado a: " + database.getName());
-        }catch (Exception e) {
-            System.err.println("Error de conexión: " + e.getMessage());
-        }
 
 
 
