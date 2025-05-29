@@ -25,17 +25,17 @@ public class Main {
 
         try {
             // Domicilios
-            Domicilio domicilioSucursal = new Domicilio("Av. Siempre Viva 742", 1, "Springfield", "Provincia X");
-            Domicilio domicilioCliente = new Domicilio("Calle Falsa 123", 2, "Springfield", "Provincia X");
+            Domicilio domicilioSucursal = new Domicilio("Av. Siempre Viva 742", "Springfield", "Provincia X");
+            Domicilio domicilioCliente = new Domicilio("Calle Falsa 123", "Springfield", "Provincia X");
 
             // Obra social
-            ObraSocial obraSocial = new ObraSocial("OSDE", 1);
+            ObraSocial obraSocial = new ObraSocial("OSDE");
 
             // Cliente
             Cliente cliente = new Cliente("Juan", "Perez", 12345678, 55555, obraSocial, domicilioCliente);
 
             // Sucursal (sin encargado inicialmente)
-            Sucursal sucursal = new Sucursal(null, domicilioSucursal, 1);
+            Sucursal sucursal = new Sucursal(null, domicilioSucursal);
 
             // Roles
             List<TipoEmpleado> rolEncargado = new ArrayList<>();
@@ -77,12 +77,12 @@ public class Main {
             );
 
             DetalleProducto detalleProducto = new DetalleProducto(
-                    1, 2, 150.50f, 301.00f, producto
+                    2, producto
             );
 
             // Venta
             Venta venta = new Venta(
-                    LocalDate.now(), 1001, 301.00f, 1,
+                    LocalDate.now(), 301.00f,
                     FormaDePago.TARJETA_DE_CREDITO, cliente, vendedor, cobrador, detalleProducto
             );
 
@@ -103,7 +103,7 @@ public class Main {
 
 
 
-            //para insertar en mongodb
+            //para insertar venta en mongodb
             String uri = "mongodb://localhost:27017";
             try (MongoClient mongoClient = MongoClients.create(uri)) {
                 MongoDatabase database = mongoClient.getDatabase("gestion_farmacia");
@@ -122,93 +122,6 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
-
-
-// ************************************************************************************************
-
-//        //DOMICILIOS
-//
-//        Domicilio domicilio1= new Domicilio("San Martín ",1,"San Fernando","Buenos aires");
-//        Domicilio domicilio2= new Domicilio("Avenida Mitre ",1,"Avellaneda","Buenos aires");
-//        Domicilio domicilio3= new Domicilio("Calle Rivadavia  ",1,"Morón","Buenos aires");
-//        Domicilio domicilio4= new Domicilio("Calle 12 ",1,"La Plata","Buenos aires");
-//
-//        //OBRA SOCIAL
-//        ObraSocial obraSocial1= new ObraSocial("IOMA",1);
-//        ObraSocial obraSocial2= new ObraSocial("GALENO",2);
-//
-//        //Sucursal
-//        Sucursal sucursal1= new Sucursal(null, domicilio2,1);
-//
-//
-//
-//        //Empleado
-//        List<Empleado> empleados= new ArrayList<>();
-//        empleados.add(new Empleado("Lucila","Velardez",12345678,1,obraSocial1,domicilio1,"123456789101",sucursal1, new ArrayList<TipoEmpleado>())  );
-//
-//        try {
-//            empleados.get(0).getRoles().add(TipoEmpleado.VENDEDOR);
-//        } catch (IndexOutOfBoundsException e) {
-//            System.out.println("Error: La lista de empleados no tiene tipo empleado.");
-//        }
-
-            // /////////////////////////////////////////////////////////////////////////////
-//
-//            Document empleado1= new Document("id",new ObjectId())
-//                    .append("cuil","12345678123")
-//                    .append("nombre","Veronica")
-//                    .append("apellido","Perez")
-//                    .append("dni","12345678")
-//                    .append("numAfiliado",1)
-//                    .append("domicilio",new Document("id",new ObjectId())
-//                            .append("calle","Rivadavia")
-//                            .append("numCalle",123)
-//                            .append("localidad","chacarita")
-//                            .append("provincia","buenos aires")
-//                    )
-//                    .append("obra social",new Document("id",new ObjectId())
-//                            .append("nombre","IOMA")
-//                    );
-//
-
-//            MongoCollection<Document> collection = database.getCollection("Personas");
-//
-//            InsertOneResult result = collection.insertOne(new Document()
-//                    .append("_id", new ObjectId())
-//                    .append("nombre", "Lucila"));
-//            InsertOneResult result1 = collection.insertOne(new Document()
-//                    .append("_id", new ObjectId())
-//                    .append("nombre", "Dylan"));
-//            System.out.println(collection);
-
-//            System.out.println("Inserted document id - insert one: " + result.getInsertedId());
-//            System.out.println("Inserted document id - insert two: " + result1.getInsertedId());
-//            System.out.println("****************************");
-//            System.out.println(" Mostramos todas las personas registradas:");
-//            for (Document persona : collection.find()) {
-//                System.out.println(persona.toJson());
-//            }
-//
-//            System.out.println(" Buscamos un documento en la coleccion Personas");
-//            Document doc = collection.find(eq("nombre", "Dylan")).first();
-//            if (doc != null) {
-//                System.out.println(doc.toJson());
-//            } else {
-//                System.out.println("No se.");
-//            }
-//            System.out.println("Bases de datos disponibles:");
-//            for (String name : mongoClient.listDatabaseNames()) {
-//                System.out.println("- " + name);
-//            }
-//
-//            System.out.println("Conectado a: " + database.getName());
-
-
-
-
 
     }
 }

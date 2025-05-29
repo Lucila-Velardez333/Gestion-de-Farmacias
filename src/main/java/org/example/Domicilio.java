@@ -1,6 +1,8 @@
 package org.example;
 
 public class Domicilio {
+	private static int contadorId = 0;
+	
     private int idDomicilio;
     private String calle;
     private String localidad;
@@ -10,9 +12,9 @@ public class Domicilio {
         this.idDomicilio = idDomicilio;
     }
 
-    public Domicilio(String calle, int idDomicilio, String localidad, String provincia) {
+    public Domicilio(String calle, String localidad, String provincia) {
         this.calle = calle;
-        this.idDomicilio = idDomicilio;//debe ser autoincremental
+        this.idDomicilio = ++contadorId;
         this.localidad = localidad;
         this.provincia = provincia;
     }

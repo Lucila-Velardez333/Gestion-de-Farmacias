@@ -1,17 +1,19 @@
 package org.example;
 
 public class DetalleProducto {
+	private static int contadorId = 1;
+	
     private int idDetalleProducto;
     private int cantidad;
     private float precioUnidad;
     private float total;
     private Producto producto;
 
-    public DetalleProducto(int idDetalleProducto, int cantidad, float precioUnidad, float total, Producto producto) {
-        this.idDetalleProducto = idDetalleProducto;//debe ser autoincremental
+    public DetalleProducto(int cantidad, Producto producto) {
+        this.idDetalleProducto = ++contadorId;
         this.cantidad = cantidad;
-        this.precioUnidad = precioUnidad;
-        this.total = total;
+        this.precioUnidad = producto.getPrecio();
+        this.total = this.precioUnidad * this.cantidad;
         this.producto = producto;
     }
 

@@ -5,21 +5,23 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 
 public class Sucursal {
+	private static int contadorSucursales = 0;
     private int idSucursal;
     private Domicilio domicilio;
     private Empleado encargado;
     @JsonManagedReference
     private List<Empleado> empleados;
+    private int contadorTickets = 0;
 
     public Sucursal(int idSucursal) {
         this.idSucursal = idSucursal;
     }
 
-    public Sucursal(Empleado encargado, Domicilio domicilio, int idSucursal) {
+    public Sucursal(Empleado encargado, Domicilio domicilio) {
         this.empleados = new ArrayList<Empleado>();
         this.encargado = encargado;//recorrer lista de roles y asignar cual el es el encargado
         this.domicilio = domicilio;
-        this.idSucursal = idSucursal;//debe ser autoincremental
+        this.idSucursal = ++contadorSucursales;
     }
 
     public int getIdSucursal() {
@@ -42,11 +44,20 @@ public class Sucursal {
     }
 
     public void setEncargado(Empleado encargado) {
-        this.encargado = encargado;
+        if(encargado.getRoles().contains(TipoEmpleado.ENCARGADO)) {
+            this.encargado = encargado;
+        } else {
+            throw new IllegalArgumentException("El empleado " + encargado.getNombre() + " " + encargado.getApellido() + " no tiene rol de encargado");
+        }
     }
 
     public List<Empleado> getEmpleados() {
         return empleados;
+    }
+    
+    public synchronized String generarNumeroTicket() {
+        contadorTickets++;
+        return String.format("%04d-%08d", idSucursal, contadorTickets);
     }
 
 

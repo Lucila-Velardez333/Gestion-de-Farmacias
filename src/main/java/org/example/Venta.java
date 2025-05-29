@@ -3,7 +3,7 @@ package org.example;
 import java.time.LocalDate;
 
 public class Venta {
-    private int numTicket;
+    private String numTicket;
     private LocalDate fecha;
     private float totalVenta;
     private int puntoDeVenta;
@@ -13,15 +13,20 @@ public class Venta {
     private Empleado empleadoCobro;
     private DetalleProducto detalleProducto;
 
-    public Venta(int numTicket) {
+    public Venta(String numTicket) {
         this.numTicket = numTicket;
     }
+    
+ 
 
-    public Venta(LocalDate fecha, int numTicket, float totalVenta, int puntoDeVenta, FormaDePago formaDePago, Persona cliente, Empleado empleadoAtencion, Empleado empleadoCobro, DetalleProducto detalleProducto) {
-        this.fecha = fecha;
-        this.numTicket = numTicket;// debe ser autoincremental?
+    public Venta(LocalDate fecha, float totalVenta, FormaDePago formaDePago, Persona cliente, Empleado empleadoAtencion, Empleado empleadoCobro, DetalleProducto detalleProducto) {
+        
+    	Sucursal sucursal = empleadoAtencion.getSucursal();
+    	
+    	this.fecha = fecha;
+        this.numTicket = sucursal.generarNumeroTicket();
         this.totalVenta = totalVenta;
-        this.puntoDeVenta = puntoDeVenta;
+        this.puntoDeVenta = sucursal.getIdSucursal();
         this.formaDePago = formaDePago;
         this.cliente = cliente;
         this.empleadoAtencion = empleadoAtencion;
@@ -30,11 +35,11 @@ public class Venta {
         this.detalleProducto = detalleProducto;
     }
 
-    public int getNumTicket() {
+    public String getNumTicket() {
         return numTicket;
     }
 
-    public void setNumTicket(int numTicket) {
+    public void setNumTicket(String numTicket) {
         this.numTicket = numTicket;
     }
 

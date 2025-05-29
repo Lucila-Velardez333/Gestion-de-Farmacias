@@ -1,6 +1,7 @@
 package org.example;
 
 public class ObraSocial {
+	private static int contadorId = 0; 
     private int idObraSocial;
     private String nombre;
 
@@ -12,9 +13,9 @@ public class ObraSocial {
         this.idObraSocial = idObraSocial;
     }
 
-    public ObraSocial(String nombre, int idObraSocial) {
+    public ObraSocial(String nombre) {
         this.nombre = nombre;
-        this.idObraSocial = idObraSocial;//auto incremental
+        this.idObraSocial = ++contadorId;
 
     }
 
