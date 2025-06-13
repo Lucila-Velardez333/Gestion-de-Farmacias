@@ -6,14 +6,14 @@ public class DetalleProducto {
     private int idDetalleProducto;
     private int cantidad;
     private float precioUnidad;
-    private float total;
+    private float SubTotal;
     private Producto producto;
 
     public DetalleProducto(int cantidad, Producto producto) {
         this.idDetalleProducto = ++contadorId;
         this.cantidad = cantidad;
         this.precioUnidad = producto.getPrecio();
-        this.total = this.precioUnidad * this.cantidad;
+        this.SubTotal = this.precioUnidad * this.cantidad;
         this.producto = producto;
     }
 
@@ -41,12 +41,12 @@ public class DetalleProducto {
         this.precioUnidad = precioUnidad;
     }
 
-    public float getTotal() {
-        return total;
+    public float getSubTotal() {
+        return SubTotal;
     }
 
-    public void setTotal(float total) {
-        this.total = total;
+    public void setSubTotal(float total) {
+        this.SubTotal = total;
     }
 
     public Producto getProducto() {

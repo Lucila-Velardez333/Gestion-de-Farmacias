@@ -25,14 +25,19 @@ public class Main {
 
         try {
             // Domicilios
-            Domicilio domicilioSucursal = new Domicilio("Av. Siempre Viva 742", "Springfield", "Provincia X");
-            Domicilio domicilioCliente = new Domicilio("Calle Falsa 123", "Springfield", "Provincia X");
+            Domicilio domicilioSucursal = new Domicilio("Plaza Manuela Llopis", "Ceuta", "Buenos Aires");
+            Domicilio domicilioCliente = new Domicilio("Via Inmaculada Bonet", "Alicante", "Buenos Aires");
+            
+            Domicilio domicilioEmpleado1 = new Domicilio("Urbanización Marcela Jódar", "Ceuta", "Buenos Aires");
+            Domicilio domicilioEmpleado2 = new Domicilio("Acceso de Isidoro Chacón", "Ávila", "Buenos Aires");
+            Domicilio domicilioEmpleado3 = new Domicilio("Via Ezequiel Cuesta", "Pontevedra", "Buenos Aires");
 
             // Obra social
-            ObraSocial obraSocial = new ObraSocial("OSDE");
-
+            ObraSocial obraSocial = new ObraSocial("PAMI");
+            ObraSocial obraSocial2 = new ObraSocial("OSDE");
+            ObraSocial obraSocial3 = new ObraSocial("Swiss Medical");
             // Cliente
-            Cliente cliente = new Cliente("Juan", "Perez", 12345678, 55555, obraSocial, domicilioCliente);
+            Cliente cliente = new Cliente("Santiago", "Castro", 20890399, 688508, obraSocial, domicilioCliente);
 
             // Sucursal (sin encargado inicialmente)
             Sucursal sucursal = new Sucursal(null, domicilioSucursal);
@@ -49,18 +54,18 @@ public class Main {
 
             // Empleados
             Empleado encargado = new Empleado(
-                    "Ana", "Gomez", 87654321, 11111, obraSocial,
-                    domicilioSucursal, "20333456152", sucursal, rolEncargado
+                    "Martina", "Luna", 39615450, 549245, obraSocial2,
+                    domicilioEmpleado1, "25236942776", rolEncargado
             );
 
             Empleado vendedor = new Empleado(
-                    "Luis", "Martinez", 11223344, 22222, obraSocial,
-                    domicilioSucursal, "20333555666", sucursal, rolVendedor
+                    "Olivia", "Rojas", 33275203, 774079, obraSocial3,
+                    domicilioEmpleado2, "27696922252", rolVendedor
             );
 
             Empleado cobrador = new Empleado(
-                    "Sofia", "Lopez", 44332211, 33333, obraSocial,
-                    domicilioSucursal, "20333666777", sucursal, rolCobrador
+                    "Santiago", "Maldonado", 38688132, 330283, obraSocial3,
+                    domicilioEmpleado3, "24497330581", rolCobrador
             );
 
             // Seteamos el encargado ahora que fue creado
@@ -75,28 +80,40 @@ public class Main {
             Producto producto = new Producto(
                     "P-001", TipoProducto.MEDICAMENTO, "Ibuprofeno 400mg", "Laboratorio ABC", 150.50f
             );
-
+            Producto producto2 = new Producto(
+                    "P-002", TipoProducto.PERFUMERIA, "Shampoo Sedal 340ml", "Laboratorio Unilever", 1220.72f
+            );
             DetalleProducto detalleProducto = new DetalleProducto(
                     2, producto
             );
-
+            DetalleProducto detalleProducto2 = new DetalleProducto(
+            		3, producto2
+            );
             // Venta
             Venta venta = new Venta(
-                    LocalDate.now(), 301.00f,
-                    FormaDePago.TARJETA_DE_CREDITO, cliente, vendedor, cobrador, detalleProducto
+                    LocalDate.now(), 0,
+                    FormaDePago.TARJETA_DE_CREDITO, cliente, vendedor, cobrador , sucursal
             );
-
+            //agrego los productos
+            venta.getProductos().add(detalleProducto);
+            venta.getProductos().add(detalleProducto2);
+            //recorre la lista de productos para sacar el total
+            float total = 0;
+            for (DetalleProducto detproducto : venta.getProductos()) {
+                total += detproducto.getSubTotal();
+            }
+            venta.setTotalVenta(total);
             // Serialización JSON
             ObjectMapper mapper = new ObjectMapper();
             // esto es  para las fechas
             mapper.registerModule(new JavaTimeModule()); // ⬅ REGISTRA ESTE MÓDULO
             mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); // ⬅ FORMATO ISO "yyyy-MM-dd"
             mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
+/*
             String jsonSucursal = mapper.writeValueAsString(sucursal);
             System.out.println("Sucursal JSON:");
             System.out.println(jsonSucursal);
-
+*/
             String jsonVenta = mapper.writeValueAsString(venta);
             System.out.println("Venta JSON:");
             System.out.println(jsonVenta);

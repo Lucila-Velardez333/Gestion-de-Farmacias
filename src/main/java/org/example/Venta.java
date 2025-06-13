@@ -1,6 +1,8 @@
 package org.example;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Venta {
     private String numTicket;
@@ -11,18 +13,21 @@ public class Venta {
     private Persona cliente;
     private Empleado empleadoAtencion;
     private Empleado empleadoCobro;
-    private DetalleProducto detalleProducto;
-
+    //private DetalleProducto detalleProducto;
+    private List<DetalleProducto> productos;
+    private Sucursal sucursal;
+    
+    
     public Venta(String numTicket) {
         this.numTicket = numTicket;
     }
     
  
 
-    public Venta(LocalDate fecha, float totalVenta, FormaDePago formaDePago, Persona cliente, Empleado empleadoAtencion, Empleado empleadoCobro, DetalleProducto detalleProducto) {
+    public Venta(LocalDate fecha, float totalVenta, FormaDePago formaDePago, Persona cliente, Empleado empleadoAtencion, Empleado empleadoCobro, Sucursal sucursal) {
         
-    	Sucursal sucursal = empleadoAtencion.getSucursal();
-    	
+    	//Sucursal sucursal = empleadoAtencion.getSucursal();
+    	this.productos = new ArrayList<DetalleProducto>();
     	this.fecha = fecha;
         this.numTicket = sucursal.generarNumeroTicket();
         this.totalVenta = totalVenta;
@@ -32,7 +37,8 @@ public class Venta {
         this.empleadoAtencion = empleadoAtencion;
         //recorrer lista roles para asignar cual es el de atencion o cajero
         this.empleadoCobro = empleadoCobro;
-        this.detalleProducto = detalleProducto;
+        //this.detalleProducto = detalleProducto;
+        this.sucursal = sucursal;
     }
 
     public String getNumTicket() {
@@ -102,7 +108,7 @@ public class Venta {
 
         this.empleadoCobro = empleadoCobro;
     }
-
+/*
     public DetalleProducto getDetalleProducto() {
         return detalleProducto;
     }
@@ -110,4 +116,28 @@ public class Venta {
     public void setDetalleProducto(DetalleProducto detalleProducto) {
         this.detalleProducto = detalleProducto;
     }
+*/
+
+
+	public Sucursal getSucursal() {
+		return sucursal;
+	}
+
+
+
+	public void setSucursal(Sucursal sucursal) {
+		this.sucursal = sucursal;
+	}
+
+
+
+	public List<DetalleProducto> getProductos() {
+		return productos;
+	}
+
+
+
+	public void setProductos(List<DetalleProducto> productos) {
+		this.productos = productos;
+	}
 }
