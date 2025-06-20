@@ -16,7 +16,7 @@ public class Venta {
     //private DetalleProducto detalleProducto;
     private List<DetalleProducto> productos;
     private Sucursal sucursal;
-    
+    private int pago;
     
     public Venta(String numTicket) {
         this.numTicket = numTicket;
@@ -24,7 +24,7 @@ public class Venta {
     
  
 
-    public Venta(LocalDate fecha, float totalVenta, FormaDePago formaDePago, Persona cliente, Empleado empleadoAtencion, Empleado empleadoCobro, Sucursal sucursal) {
+    public Venta(LocalDate fecha, float totalVenta, FormaDePago formaDePago, Persona cliente, Empleado empleadoAtencion, Empleado empleadoCobro, Sucursal sucursal, int pago) {
         
     	//Sucursal sucursal = empleadoAtencion.getSucursal();
     	this.productos = new ArrayList<DetalleProducto>();
@@ -39,6 +39,7 @@ public class Venta {
         this.empleadoCobro = empleadoCobro;
         //this.detalleProducto = detalleProducto;
         this.sucursal = sucursal;
+        this.setPago(pago);
     }
 
     public String getNumTicket() {
@@ -139,5 +140,17 @@ public class Venta {
 
 	public void setProductos(List<DetalleProducto> productos) {
 		this.productos = productos;
+	}
+
+
+
+	public int getPago() {
+		return pago;
+	}
+
+
+
+	public void setPago(int pago) {
+		this.pago = pago;
 	}
 }
